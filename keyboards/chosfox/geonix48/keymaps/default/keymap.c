@@ -23,6 +23,7 @@ enum planck_layers {
   _ADJUST,
   _L,
   _R,
+  _NUM,
 };
 
 enum planck_keycodes {
@@ -46,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
-    KC_Q,         LT(2, KC_W),  LSFT_T(KC_E), LCA_T(KC_R),  KC_T,            KC_BTN1, KC_BTN2, KC_Y,           LCA_T(KC_U),  RSFT_T(KC_I), LT(5, KC_O),  KC_P,
+    KC_Q,         LCTL_T(KC_W), LSFT_T(KC_E), LCA_T(KC_R),  KC_T,            KC_BTN1, KC_BTN2, KC_Y,           LCA_T(KC_U),  RSFT_T(KC_I), LT(5, KC_O),  KC_P,
     LT(1, KC_A),  LALT_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), KC_G,            KC_MS_D, KC_MS_U, KC_H,           RSFT_T(KC_J), RCTL_T(KC_K), RALT_T(KC_L), LT(5, KC_MINUS),
     LGUI_T(KC_Z), LCTL_T(KC_X), KC_C,         LALT_T(KC_V), KC_B,            KC_MS_L, KC_MS_R, KC_N,           RALT_T(KC_M), LSFT(KC_9),   LSFT(KC_0),   RGUI_T(KC_SLASH),
     KC_BTN3,      KC_F13,       KC_BTN4,      KC_BTN5,      LT(2, KC_SPACE), KC_WH_D, KC_WH_U, LT(5, KC_BSPC), KC_WH_L,      KC_WH_R,      KC_MNXT,      KC_MPLY
@@ -64,10 +65,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_ortho_4x12(
-    _______, _______,           KC_ESCAPE,      _______,          _______, _______, _______, KC_F1,    KC_F2,         KC_F3,         KC_F4,         _______,
-    _______, LALT_T(KC_DELETE), LCTL_T(KC_TAB), LSFT_T(KC_ENTER), KC_BSPC, _______, _______, KC_F5,    RSFT_T(KC_F6), RCTL_T(KC_F7), RALT_T(KC_F8), _______,
-    _______, LCTL_T(KC_TRNS),   LSFT(KC_TAB),   _______,          _______, _______, _______, KC_F9,    KC_F10,        KC_F11,        KC_F12,        _______,
-    TG(4),   _______,           _______,        _______,          _______, _______, _______, _______,  KC_INSERT,     KC_PSCR,       KC_SCRL,       KC_PAUSE
+    _______, _______,         KC_ESCAPE,      _______,          _______, _______, _______, KC_F1,    KC_F2,         KC_F3,         KC_F4,         _______,
+    _______, LALT_T(KC_DEL),  LCTL_T(KC_TAB), LSFT_T(KC_ENTER), KC_BSPC, _______, _______, KC_F5,    RSFT_T(KC_F6), RCTL_T(KC_F7), RALT_T(KC_F8), _______,
+    _______, LCTL_T(_______), LSFT(KC_TAB),   _______,          _______, _______, _______, KC_F9,    KC_F10,        KC_F11,        KC_F12,        _______,
+    TG(_L),  _______,         _______,        _______,          _______, _______, _______, _______,  KC_INSERT,     KC_PSCR,       KC_SCRL,       KC_PAUSE
 ),
 
 /* Raise
@@ -82,10 +83,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_ortho_4x12(
-    _______, KC_HOME,          KC_UP,            KC_END,           KC_PGUP, _______, _______, _______, _______,              KC_LANGUAGE_2,   KC_LANGUAGE_1,   KC_APPLICATION,
-    _______, LALT_T(KC_LEFT),  LCTL_T(KC_DOWN),  LSFT_T(KC_RIGHT), KC_PGDN, _______, _______, _______, RSFT_T(KC_SEMICOLON), RCTL_T(KC_LBRC), RALT_T(KC_RBRC), KC_P,
-    _______, _______,          QK_AREP,          QK_REP,           _______, _______, _______, _______, KC_ENTER,             KC_COMMA,        KC_DOT,          KC_CAPS,
-    _______, _______,          _______,          _______,          _______, _______, _______, _______, KC_MNXT,              KC_VOLD,         KC_VOLU,         KC_MPLY
+    TO(_NUM), KC_HOME,          KC_UP,            KC_END,           KC_PGUP, _______, _______, _______, _______,              KC_LANGUAGE_2,   KC_LANGUAGE_1,   KC_APPLICATION,
+    _______,  LALT_T(KC_LEFT),  LCTL_T(KC_DOWN),  LSFT_T(KC_RIGHT), KC_PGDN, _______, _______, _______, RSFT_T(KC_SEMICOLON), RCTL_T(KC_LBRC), RALT_T(KC_RBRC), KC_P,
+    _______,  _______,          QK_AREP,          QK_REP,           _______, _______, _______, _______, KC_ENTER,             KC_COMMA,        KC_DOT,          KC_CAPS,
+    _______,  _______,          _______,          _______,          _______, _______, _______, _______, KC_MNXT,              KC_VOLD,         KC_VOLU,         KC_MPLY
 ),
 
 /* Adjust (Lower + Raise)
@@ -108,10 +109,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_L] = LAYOUT_ortho_4x12(
-    KC_ESCAPE, KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,     KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,         _______,
-    KC_TAB,    KC_A,    KC_S,    KC_D,    KC_F,     KC_G,     KC_H,    KC_J,    KC_K,     KC_L,    KC_SEMICOLON, KC_QUOTE,
-    KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,     KC_N,    KC_M,    KC_COMMA, KC_DOT,  KC_SLASH,     KC_RSFT,
-    TG(4),     KC_TRNS, KC_LALT, KC_LCTL, KC_SPACE, KC_SPACE, _______, _______, _______,  _______, _______,      _______
+    KC_ESCAPE,   KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,     KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,         _______,
+    KC_TAB,      KC_A,    KC_S,    KC_D,    KC_F,     KC_G,     KC_H,    KC_J,    KC_K,     KC_L,    KC_SEMICOLON, KC_QUOTE,
+    KC_LSFT,     KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,     KC_N,    KC_M,    KC_COMMA, KC_DOT,  KC_SLASH,     KC_RSFT,
+    TG(_QWERTY), KC_TRNS, KC_LALT, KC_LCTL, KC_SPACE, KC_SPACE, _______, _______, _______,  _______, _______,      _______
 ),
 
 [_R] = LAYOUT_ortho_4x12(
@@ -121,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,      _______,      _______,      _______,      _______,  _______, _______, _______, _______,         _______,       _______,          _______
 ),
 
-[6] = LAYOUT_ortho_4x12(
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+[_NUM] = LAYOUT_ortho_4x12(
+    TO(_QWERTY), KC_P2,   KC_P3,   KC_P4,   KC_P5,   _______, _______, _______, _______, _______, _______, _______,
+    _______,     KC_P9,   KC_P0,   KC_P1,   _______, _______, _______, _______, _______, _______, _______, _______,
+    _______,     KC_P6,   KC_P7,   KC_P8,   _______,   _______, _______, _______, _______, _______, _______, _______,
+    _______,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 [7] = LAYOUT_ortho_4x12(
